@@ -37,7 +37,7 @@ do
     output="$i/$app/$app-manifest.yaml"
     cp -r decapod-base-yaml/$app/base $i/
     echo "[render-cd] Rendering $app-manifest.yaml for $i site"
-    docker run --rm -i -v $(pwd)/$i:/$i --name kustomize-build sktdev/decapod-kustomize:latest kustomize build --enable_alpha_plugins /$i/$app -o /$i/$app/$app-manifest.yaml
+    docker run --rm -i -v $(pwd)/$i:/$i --name kustomize-build ghcr.io/openinfradev/kustomize-helm-transformer:v1.3 kustomize build --enable_alpha_plugins /$i/$app -o /$i/$app/$app-manifest.yaml
     build_result=$?
 
     if [ $build_result != 0 ]; then
@@ -53,7 +53,7 @@ do
     fi
 
     # cat $output
-    docker run --rm -i --net=host -v $(pwd)/$i:/$i $(pwd)/$outputdir:/cd --name generate siim/helmrelease2yaml:v1.1.0 -m $output -t -o /cd/$i/$app
+    docker run --rm -i --net=host -v $(pwd)/$i:/$i -v $(pwd)/$outputdir:/cd --name generate ghcr.io/openinfradev/helmrelease2yaml:v1.2.0 -m $output -t -o /cd/$i/$app
     rm $output
 
     rm -rf $i/base
