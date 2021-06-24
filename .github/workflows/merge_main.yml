@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - k2-ahnsk
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,4 +38,4 @@ jobs:
           destination-repository-name: 'decapod-manifests'
           user-email: 'taco_support@sk.com'
           commit-message: See ORIGIN_COMMIT
-          target-branch: main
+          target-branch: k2-ahnsk

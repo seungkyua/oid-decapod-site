@@ -1,6 +1,6 @@
 #!/bin/bash
 DECAPOD_BASE_URL=https://github.com/openinfradev/decapod-base-yaml.git
-BRANCH="main"
+BRANCH="main_servicemesh_chart_refactoring"
 
 pwd
 ls
@@ -9,7 +9,7 @@ if [ $# -eq 1 ]; then
   BRANCH=$1
 fi
 
-site_list=$(ls -d */ | sed 's/\///g' | grep -v 'docs' | grep -v 'cd')
+site_list=$(ls -d */ | sed 's/\///g' | grep -x 'hanu-reference')
 echo "Fetch base with $BRANCH branch/tag........"
 git clone -b $BRANCH $DECAPOD_BASE_URL
 if [ $? -ne 0 ]; then
@@ -24,6 +24,9 @@ do
 
   for app in `ls $i/`
   do
+    if [[ "$app" != "service-mesh" ]]; then
+      continue
+    fi
     output="$i/$app/$app-manifest.yaml"
     cp -r decapod-base-yaml/$app/base $i/
     echo "Rendering $app-manifest.yaml for $i site"
