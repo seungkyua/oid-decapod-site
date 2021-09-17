@@ -65,7 +65,8 @@ charts:
     IstioOperator.components.ingressGateways.k8s.hpaSpec.minReplicas: 1
     IstioOperator.components.ingressGateways.k8s.nodeSelector: $(serviceMeshIngressNodeSelector)
     IstioOperator.components.ingressGateways.k8s.service.type: NodePort
-    IstioOperator.components.ingressGateways.k8s.service.ports.httpNodePort: 31081
+    IstioOperator.components.ingressGateways.k8s.service.ports.statusNodePort: 31021
+    IstioOperator.components.ingressGateways.k8s.service.ports.httpNodePort: 31080
     IstioOperator.components.ingressGateways.k8s.service.ports.httpsNodePort: 31443
     IstioOperator.components.egressGateways.name: istio-egress-gateway
     IstioOperator.components.egressGateways.namespace: istio-system
@@ -92,20 +93,9 @@ charts:
       serverUrls: https://eck-elasticsearch-es-http.lma.svc:9200
       username: elastic
       password: tacoword
+    query.basePath: /jaeger
     JaegerIngress:
-      enabled: true
-      namespace: istio-system
-      rules:
-      - host: $(jaegerDomain)
-        http:
-          paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: jaeger-operator-jaeger-query
-                port:
-                  number: 16686
+      enabled: false
 
 - name: kiali-operator
   override:
@@ -129,23 +119,13 @@ charts:
     externalServices.grafana.inClusterUrl: http://grafana.lma.svc:80
     externalServices.grafana.url: http://VM-NAME-1:30009
     KialiIngress:
-      enabled: true
-      namespace: istio-system
-      rules:
-      - host: $(kialiDomain)
-        http:
-          paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kaili
-                port:
-                  number: 20001
+      enabled: false
 
 - name: servicemesh-grafana-dashboard
   override:
     namespace: istio-system
+    dashboards:
+      label: grafana_dashboard
 
 - name: servicemesh-prometheusmonitor
   override:

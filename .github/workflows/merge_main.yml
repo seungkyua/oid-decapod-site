@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - '*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,8 +34,10 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'cd'
-          destination-github-username: 'openinfradev'
-          destination-repository-name: 'decapod-manifests'
+          #destination-github-username: 'openinfradev'
+          #destination-repository-name: 'decapod-manifests'
+          destination-github-username: 'seungkyua'
+          destination-repository-name: 'oid-decapod-manifests'
           user-email: 'taco_support@sk.com'
           commit-message: See ORIGIN_COMMIT
           target-branch: main

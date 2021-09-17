@@ -1,6 +1,9 @@
 #!/bin/bash
-DECAPOD_BASE_URL=https://github.com/openinfradev/decapod-base-yaml.git
-BRANCH="main"
+#DECAPOD_BASE_URL=https://github.com/openinfradev/decapod-base-yaml.git
+#BRANCH="main"
+
+DECAPOD_BASE_URL='https://github.com/seungkyua/oid-decapod-base-yaml.git decapod-base-yaml'
+BRANCH="tks-usercluster-sso"
 
 rm -rf decapod-base-yaml
 
