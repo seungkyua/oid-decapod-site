@@ -5,6 +5,7 @@ metadata:
 
 charts:
 - name: argo-workflows-operator
+  version: 0.10.0
   override:
     controller.resources.requests.cpu: 500m
     controller.resources.requests.memory: 1024Mi
