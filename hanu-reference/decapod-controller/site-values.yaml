@@ -3,4 +3,9 @@ kind: HelmValuesTransformer
 metadata:
   name: site
 
-charts: []
+charts:
+- name: argo-workflows-operator
+  override:
+    controller.resources.request.cpu: 500m
+    controller.resources.request.memory: 1024Mi
+

@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - main
+      - argo-workflow-resources
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -34,8 +34,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: 'output'
-          destination-github-username: 'openinfradev'
-          destination-repository-name: 'decapod-manifests'
+          destination-github-username: 'seungkyua'
+          destination-repository-name: 'oid-decapod-manifests'
           user-email: 'taco_support@sk.com'
           commit-message: See ORIGIN_COMMIT
           target-branch: main
