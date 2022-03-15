@@ -1,6 +1,6 @@
 #!/bin/bash
-DECAPOD_BASE_URL=https://github.com/openinfradev/decapod-base-yaml.git
-BRANCH="main"
+DECAPOD_BASE_URL=https://github.com/seungkyua/oid-decapod-base-yaml.git
+BRANCH="argo-workflow-resources"
 DOCKER_IMAGE_REPO="docker.io"
 GITHUB_IMAGE_REPO="ghcr.io"
 outputdir="output"
